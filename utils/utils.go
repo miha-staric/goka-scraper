@@ -21,3 +21,10 @@ func NormalizeSpaces(s string) string {
 	}
 	return b.String()
 }
+
+func Max(a, b float64) float64 {
+	if a > b {
+		return a
+	}
+	return b
+}

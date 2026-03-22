@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
-)
 
-import (
 	"github.com/miha-staric/goka-scraper/config"
 	"github.com/miha-staric/goka-scraper/scraper"
+	"github.com/miha-staric/goka-scraper/slice"
 )
 
 func main() {
@@ -17,5 +16,14 @@ func main() {
 		panic(fmt.Sprintf("Failed to fetch dumpings: %v", err))
 	}
 
-	fmt.Printf("Dumpings fetched: %+v\n", dumpings)
+	switch cfg.Mode {
+	case "default":
+		slice.SummarizeDumpings(dumpings)
+	case "months":
+		slice.MonthlyAggregation(dumpings, cfg.CostBio, cfg.CostMko, cfg.MinBio, cfg.MinMko)
+	case "years":
+		slice.YearlyAggregation(dumpings)
+	default:
+		fmt.Println("Unknown mode.")
+	}
 }

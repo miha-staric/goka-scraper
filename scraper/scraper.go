@@ -9,9 +9,7 @@ import (
 	"strings"
 
 	"github.com/gocolly/colly/v2"
-)
 
-import (
 	"github.com/miha-staric/goka-scraper/config"
 	"github.com/miha-staric/goka-scraper/types"
 	"github.com/miha-staric/goka-scraper/utils"
@@ -97,7 +95,8 @@ func FetchDumpings(cfg config.Config) ([]types.Dumping, error) {
 		}
 	})
 
-	if err := c.Request("GET", cfg.DashboardUrl, nil, nil, http.Header{
+	dashboardUrlWithDates := cfg.DashboardUrl + "?fromDate=" + cfg.DateFrom.Format("02. 01. 2006") + "&untilDate=" + cfg.DateTo.Format("02. 01. 2006")
+	if err := c.Request("GET", dashboardUrlWithDates, nil, nil, http.Header{
 		"X-Inertia":         []string{"true"},
 		"X-Inertia-Version": []string{inertiaVersion},
 		"X-XSRF-TOKEN":      []string{xsrfToken},
