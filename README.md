@@ -1,2 +1,3 @@
 # goka-scraper
-VoKa scraper but written in Go
+
+VoKa scraper but written in Go.
