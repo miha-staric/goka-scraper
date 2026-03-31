@@ -1,4 +1,4 @@
-// Package types defines data structures used by the VoKa scraper.
+// Package types defines data structures used by the GoKa scraper.
 package types
 
 type Dumping struct {
